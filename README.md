@@ -31,3 +31,12 @@ It consolidates data from multiple sheets, applies filters, and generates a clea
    - Excludes CoCd = `1803`
    - Keeps only selected plants
 4. Cleaned data is written to a new Excel file with the same sheet structure.
+
+---
+
+## Files
+
+| File Name             | Description                            |
+|----------------------|----------------------------------------|
+| `MRBR.py`      | Python script          |
+| `MRBR_Before_After_Sample.xlsx`    | Sample showing before and after        |
