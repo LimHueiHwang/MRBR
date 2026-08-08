@@ -1,42 +1,71 @@
-# MRBR Report
+# MRBR Automation
 
-This Python script automates the processing of MRBR (Blocked Invoice) reports exported from SAP.  
-It consolidates data from multiple sheets, applies filters, and generates a cleaned Excel output for easier review and approval.
-
----
-
-## Features
-- Reads MRBR data from multiple sheets (`IPO MRBR`, `SITE MRBR`, `IMAC MRBR`).
-- Filters out unwanted records (e.g., Company Code `1803`).
-- Keeps only relevant plants (`HU07`, `HU08`, `IN07`, `IT08`, `PL01`, `SG02`, `VN01`).
-- Adds helper columns: `BUYER Comment`, `Elaine approval`, `SP Update`.
-- Saves the processed report to a structured server location with today’s date.
+Python-based report automation developed to process SAP MRBR (Blocked Invoice) reports and prepare standardized Excel output for Purchasing review.
 
 ---
 
-## File Structure
-- `main.py` → Main script for processing MRBR reports.
-- Output file → Saved automatically to:
-  - `//sgsind0nsifsv01a/IMAC Data/.../{year}/MRBR {today}.xlsx`
+## Overview
+
+MRBR is used to identify blocked invoices that require Purchasing review and follow-up.
+
+The manual process involved working with multiple MRBR report files, applying plant and company-code filtering, and adding the required review fields before producing the final working file.
+
+This automation standardizes those steps using Python and pandas.
 
 ---
 
-## How It Works
-1. User provides an input Excel file name when prompted.
-2. Script reads data from:
-   - **SITE MRBR**
-   - **IPO MRBR**
-   - **IMAC MRBR**
-3. Filters are applied:
-   - Excludes CoCd = `1803`
-   - Keeps only selected plants
-4. Cleaned data is written to a new Excel file with the same sheet structure.
+## Business Problem
+
+The MRBR process required repetitive Excel preparation, including:
+
+- Processing multiple MRBR report types
+- Filtering records by required plants
+- Applying specific business rules
+- Adding Purchasing review columns
+- Preparing a standardized output file
+- Renaming the final file using the required date format
+
+Performing these steps manually increases repetitive work and creates opportunities for inconsistent filtering or formatting.
 
 ---
 
-## Files
+## Solution
 
-| File Name             | Description                            |
-|----------------------|----------------------------------------|
-| `MRBR.py`      | Python script          |
-| `MRBR_Before_After_Sample.xlsx`    | Sample showing before and after        |
+The automation reads the required MRBR Excel reports, processes the data according to predefined business rules, and generates a standardized Excel output for Purchasing review.
+
+### Process
+
+1. Read the MRBR input reports
+2. Process the required MRBR report types
+3. Filter records based on required plants
+4. Apply the IPO company-code exclusion rule
+5. Add required Purchasing review columns
+6. Generate the processed Excel output
+7. Save the output using the required naming convention
+
+---
+
+## Supported MRBR Reports
+
+The automation processes the following MRBR reports:
+
+- `SITE MRBR`
+- `IPO MRBR`
+- `IMAC MRBR`
+
+---
+
+## Business Rules
+
+### Plant Filtering
+
+The following plants are included in the processing:
+
+```text
+HU07
+HU08
+IN07
+IT08
+PL01
+SG02
+VN01
