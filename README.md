@@ -1,6 +1,11 @@
 # MRBR Automation
 
-Python-based report automation developed to process SAP MRBR (Blocked Invoice) reports and prepare standardized Excel output for Purchasing review.
+![Production](https://img.shields.io/badge/Status-Production-success)
+![Python](https://img.shields.io/badge/Python-Automation-blue)
+![pandas](https://img.shields.io/badge/pandas-Data%20Processing-green)
+![Excel](https://img.shields.io/badge/Excel-Automation-orange)
+
+> Python-based report automation developed to process SAP MRBR (Blocked Invoice) reports and prepare standardized Excel output for Purchasing review.
 
 ---
 
@@ -8,58 +13,71 @@ Python-based report automation developed to process SAP MRBR (Blocked Invoice) r
 
 MRBR is used to identify blocked invoices that require Purchasing review and follow-up.
 
-The manual process involved working with multiple MRBR report files, applying plant and company-code filtering, and adding the required review fields before producing the final working file.
-
-This automation standardizes those steps using Python and pandas.
-
----
-
-## Business Problem
-
-The MRBR process required repetitive Excel preparation, including:
-
-- Processing multiple MRBR report types
-- Filtering records by required plants
-- Applying specific business rules
-- Adding Purchasing review columns
-- Preparing a standardized output file
-- Renaming the final file using the required date format
-
-Performing these steps manually increases repetitive work and creates opportunities for inconsistent filtering or formatting.
-
----
-
-## Solution
-
-The automation reads the required MRBR Excel reports, processes the data according to predefined business rules, and generates a standardized Excel output for Purchasing review.
-
-### Process
-
-1. Read the MRBR input reports
-2. Process the required MRBR report types
-3. Filter records based on required plants
-4. Apply the IPO company-code exclusion rule
-5. Add required Purchasing review columns
-6. Generate the processed Excel output
-7. Save the output using the required naming convention
-
----
-
-## Supported MRBR Reports
-
-The automation processes the following MRBR reports:
+This automation processes an MRBR Excel workbook containing three report worksheets:
 
 - `SITE MRBR`
 - `IPO MRBR`
 - `IMAC MRBR`
 
+The Python script applies predefined Purchasing business rules, adds the required review fields, and generates a processed Excel workbook for Purchasing review.
+
+**Project Status:** Production
+
 ---
 
-## Business Rules
+## Business Problem
+
+The MRBR report required repetitive Excel preparation before the Purchasing team could perform its review.
+
+The manual process involved:
+
+- Opening the MRBR Excel workbook.
+- Processing the required MRBR report types.
+- Filtering records based on required plants.
+- Applying a specific Company Code exclusion rule.
+- Adding Purchasing review columns.
+- Preparing the processed workbook.
+- Saving the output using the required date-based naming convention.
+
+These repetitive steps created unnecessary manual work and could lead to inconsistent filtering or preparation.
+
+---
+
+## Solution
+
+The automation standardizes the MRBR report-preparation process using Python and pandas.
+
+The script:
+
+1. Reads the MRBR Excel workbook.
+2. Loads the `SITE MRBR`, `IPO MRBR`, and `IMAC MRBR` worksheets.
+3. Filters the data to the required plants.
+4. Excludes records containing Company Code `1803` from the IPO MRBR data.
+5. Adds Purchasing review columns.
+6. Generates a new Excel workbook containing the processed data.
+7. Saves the output using the required date-based filename.
+
+The automation processes the Excel report exported from SAP. It does not directly execute SAP transactions.
+
+---
+
+## Key Features
+
+### Multi-Sheet Excel Processing
+
+The automation processes three MRBR worksheets:
+
+- `SITE MRBR`
+- `IPO MRBR`
+- `IMAC MRBR`
+
+Each worksheet is processed separately and written into the generated output workbook.
+
+---
 
 ### Plant Filtering
 
-The following plants are included in the processing:
+The automation retains the following plants:
 
 ```text
 HU07
