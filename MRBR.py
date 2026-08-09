@@ -1,11 +1,6 @@
 import pandas as pd
 from datetime import datetime, date
 
-def get_year():
-    current_date = date.today()
-    year = current_date.year
-    return year
-
 def get_todays_date():
     today = datetime.today()
     year = today.strftime('%Y')  # Use '%Y' for full year (e.g., 2024)
