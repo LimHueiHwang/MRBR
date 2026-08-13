@@ -50,7 +50,7 @@ def filter_dataframe(df, col_name, desired_values):
 
     if col_name is not None:
         df[col_name] = df[col_name].astype(str)
-        df = df[~df[col_name].str.contains("1803")]
+        df = df[~df[col_name].str.contains("1810")]
 
     df = df.loc[df["Plnt"].isin(desired_values)]
 
@@ -79,13 +79,13 @@ def main():
     )
 
     desired_values = [
-        "HU07",
-        "HU08",
-        "IN07",
-        "IT08",
-        "PL01",
-        "SG02",
-        "VN01"
+        "AA07",
+        "AA08",
+        "AB07",
+        "AB08",
+        "AA01",
+        "AA02",
+        "AC01"
     ]
 
     df_site = pd.read_excel(
