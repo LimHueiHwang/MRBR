@@ -2,44 +2,42 @@
 
 **Status: Production**
 
-Python automation for processing and preparing MRBR reports for the Purchasing team.
+Python automation that processes MRBR Excel reports and prepares standardized workbooks for the Purchasing team.
 
 ## Overview
 
-This automation processes an MRBR Excel report exported by an administrator to a designated server location. It applies predefined Purchasing filtering and cleanup rules, prepares the report for review, and saves the processed workbook to the designated IMAC server output location.
+MRBR report preparation previously required manual processing of multiple Excel worksheets, including plant filtering, business-rule filtering, and preparation of Purchasing follow-up fields.
 
-The automation reduces repetitive manual report preparation and provides a consistent output format for the Purchasing process.
+This automation performs those steps programmatically and generates a standardized output workbook for Purchasing review.
 
 ## Business Problem
 
-MRBR reports require manual preparation before they can be used by the Purchasing team. The process involves reviewing multiple report worksheets, filtering relevant plants, applying specific business rules, and preparing additional fields for Purchasing follow-up.
+Manual MRBR preparation is repetitive and depends on consistent application of Purchasing rules across multiple report sheets.
 
-Performing these steps manually is repetitive and can lead to inconsistent report preparation.
+The automation standardizes this preparation process and reduces repetitive manual handling.
 
 ## Solution
 
-The Python automation:
+The Python script:
 
 * Reads the `SITE MRBR`, `IPO MRBR`, and `IMAC MRBR` worksheets.
 * Filters records to the required Purchasing plants.
 * Applies the IPO Company Code filtering rule.
-* Adds Purchasing review fields.
-* Creates a cleaned Excel workbook.
-* Saves the processed report to the designated IMAC server location.
+* Adds predefined Purchasing follow-up fields.
+* Generates a standardized Excel workbook.
+* Saves the processed workbook to the designated IMAC server location.
 
 ## Workflow
 
 ![Workflow](docs/diagrams/workflow.png)
 
-**Process:**
-
-`MRBR Export → Server Input → Python Processing → Filtering & Cleanup → Processed MRBR → Server Output`
+`MRBR Export → Server Input → Python Processing → Filtering & Transformation → Processed MRBR → Server Output`
 
 ## Architecture
 
 ![Architecture](docs/diagrams/architecture.png)
 
-The automation uses Python and pandas to process the exported Excel workbook. SAP is outside the direct automation boundary; the Python process starts after the MRBR report has been exported.
+The automation uses Python and pandas for Excel data processing. SAP is outside the direct automation boundary; the process begins after the MRBR report has been exported.
 
 ## Technologies
 
@@ -50,35 +48,40 @@ The automation uses Python and pandas to process the exported Excel workbook. SA
 
 ## Key Features
 
-* Multi-sheet MRBR processing
+* Multi-sheet Excel processing
 * Plant-based filtering
 * IPO Company Code filtering
-* Automated Purchasing review columns
-* Automated output workbook generation
+* Automated Purchasing review fields
+* Standardized workbook generation
 * Server-based input and output workflow
 
 ## Input & Output
 
 **Input:**
-MRBR Excel report exported by an administrator to the designated server location.
+MRBR Excel report exported to the designated server location.
 
 **Output:**
-Processed MRBR Excel workbook saved to the designated IMAC server output folder.
+Processed MRBR workbook saved to the designated IMAC server output location.
 
 ## My Role
 
-I designed and developed the automation based on the Purchasing workflow. My responsibilities included defining the processing logic and business rules, developing the Python solution, testing the processed output, and maintaining and improving the automation.
+I designed and developed the automation based on the Purchasing workflow. My work included defining the processing logic and business rules, developing the Python solution, testing the generated output, and maintaining the production automation.
 
 ## Limitations
 
-* The automation depends on the expected MRBR Excel worksheet and column structure.
-* Plant and business-rule values are currently defined within the Python implementation.
+* The automation depends on the expected MRBR worksheet and column structure.
+* Plant and business-rule values are currently defined in the Python implementation.
 * The automation does not directly execute SAP transactions or control SAP GUI.
 
 ## Future Improvements
 
-Potential improvements include externalizing business rules and configuration, adding stronger input validation, and introducing structured logging and automated testing.
+Potential improvements include:
+
+* Externalizing business rules and configuration
+* Stronger input validation
+* Structured logging
+* Automated testing
 
 ## Disclaimer
 
-This repository contains a portfolio representation of a production business automation. Company-specific data, credentials, and confidential information are not included. Sample data is provided for demonstration purposes.
+This repository is a portfolio representation of a production business automation. Company-specific data, credentials, and confidential information are excluded. Sample data is provided for demonstration purposes.
